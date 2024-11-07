@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-ohne-volume
+spec:
+  containers:
+    - name: writer-container
+      image: busybox
+      command: ["sh", "-c", 'while true; do echo "Es wird in die Datei geschrieben"; date >> /data/data.txt; sleep 5; done']
+    - name: reader-container
+      image: busybox
+      command: ["sh", "-c", 'while true; do echo "Datei wird jetzt ausgelesen"; cat /data/data.txt; sleep 5; done']  
